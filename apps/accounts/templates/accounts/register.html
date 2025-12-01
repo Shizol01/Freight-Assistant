@@ -1,0 +1,91 @@
+{% extends "base_auth.html" %}
+{% load static %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+    <div class="flex justify-center items-center min-h-[80vh]">
+        <div class="card bg-base-100 shadow-xl w-full max-w-md">
+            <div class="card-body">
+
+                <h2 class="text-2xl font-bold text-center">Create an Account</h2>
+                <p class="text-center text-sm text-gray-500 mb-4">
+                    Join Freight Assistant and start using the platform
+                </p>
+
+                <form method="POST" class="space-y-3">
+                    {% csrf_token %}
+
+
+                    <div class="form-control">
+                        <label class="label"><span class="label-text">Username</span></label>
+                        {{ form.username }}
+                        {% if form.username.errors %}
+                            <p class="text-error text-sm">{{ form.username.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+
+
+                    <div class="form-control">
+                        <label class="label"><span class="label-text">First Name</span></label>
+                        {{ form.first_name }}
+                        {% if form.first_name.errors %}
+                            <p class="text-error text-sm">{{ form.first_name.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+
+
+                    <div class="form-control">
+                        <label class="label"><span class="label-text">Last Name</span></label>
+                        {{ form.last_name }}
+                        {% if form.last_name.errors %}
+                            <p class="text-error text-sm">{{ form.last_name.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+
+
+                    <div class="form-control">
+                        <label class="label"><span class="label-text">Email</span></label>
+                        {{ form.email }}
+                        {% if form.email.errors %}
+                            <p class="text-error text-sm">{{ form.email.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+
+
+                    <div class="form-control">
+                        <label class="label"><span class="label-text">Password</span></label>
+                        {{ form.password }}
+                        {% if form.password.errors %}
+                            <p class="text-error text-sm">{{ form.password.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+
+
+                    <div class="form-control">
+                        <label class="label"><span class="label-text">Confirm Password</span></label>
+                        {{ form.password2 }}
+                        {% if form.password2.errors %}
+                            <p class="text-error text-sm">{{ form.password2.errors.0 }}</p>
+                        {% endif %}
+                    </div>
+
+
+                    {% if form.non_field_errors %}
+                        <p class="text-error text-sm text-center">
+                            {{ form.non_field_errors.0 }}
+                        </p>
+                    {% endif %}
+
+                    <button class="btn btn-primary w-full mt-2">Sign Up</button>
+                </form>
+
+                <p class="text-sm text-center mt-4">
+                    Already have an account?
+                    <a href="{% url 'login' %}" class="link link-primary">Log in</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}
