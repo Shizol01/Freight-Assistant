@@ -1,5 +1,6 @@
 {% load static %}
 {% load django_browser_reload %}
+
 <!DOCTYPE html>
 <html lang="en" data-theme="corporate">
 <head>
@@ -13,20 +14,19 @@
 <body class="bg-base-200 min-h-screen">
 
 <div class="drawer lg:drawer-open">
-    <input id="sidebar-toggle" type="checkbox" class="drawer-toggle" />
+    <input id="sidebar-toggle" type="checkbox" class="drawer-toggle"/>
 
-    <!-- MAIN CONTENT -->
     <div class="drawer-content flex flex-col">
-        
         {% include "partials/navbar.html" %}
 
-        <main class="p-6">
+        <main class="p-6 pt-20">
             {% block content %}{% endblock %}
         </main>
     </div>
 
     {% include "partials/sidebar.html" %}
 </div>
+
 
 {% django_browser_reload_script %}
 </body>
