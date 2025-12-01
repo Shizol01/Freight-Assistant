@@ -1,67 +1,35 @@
-{% extends "base.html" %}
-{% load static %}
-{% block title %}Log in{% endblock %}
+{% extends "base_auth.html" %}
+
+{% block title %}Login{% endblock %}
+
 {% block content %}
+<div class="card w-full max-w-md bg-base-100 shadow-xl p-8">
+    <h2 class="text-3xl font-bold text-center mb-2">Welcome Back</h2>
+    <p class="text-center mb-6">Log in to access the Freight Assistant dashboard</p>
 
-<div class="flex items-center justify-center min-h-[80vh]">
-    <div class="w-full max-w-md bg-base-100 shadow-xl rounded-xl p-8">
+    <form method="POST" class="space-y-4">
+        {% csrf_token %}
 
-        <h2 class="text-3xl font-bold text-center mb-6">Welcome Back</h2>
-        <p class="text-center text-base-content/60 mb-8">
-            Log in to access the Freight Assistant dashboard
-        </p>
-
-        <form method="POST" class="space-y-5">
-            {% csrf_token %}
-
-            <!-- Username -->
-            <div class="form-control">
-                <label class="label">
-                    <span class="label-text">Username</span>
-                </label>
-                <input
-                    type="text"
-                    name="username"
-                    class="input input-bordered w-full"
-                    required
-                />
-            </div>
-
-            <!-- Password -->
-            <div class="form-control">
-                <label class="label">
-                    <span class="label-text">Password</span>
-                </label>
-                <input
-                    type="password"
-                    name="password"
-                    class="input input-bordered w-full"
-                    required
-                />
-            </div>
-
-            <!-- Error handling -->
-            {% if form.errors %}
-                <div class="alert alert-error shadow-sm">
-                    <span>Invalid username or password.</span>
-                </div>
-            {% endif %}
-
-            <!-- Submit -->
-            <button class="btn btn-primary w-full" type="submit">
-                Log in
-            </button>
-        </form>
-
-        <div class="text-center mt-6">
-            <p class="text-sm">
-                Don't have an account?
-                <a href="{% url 'register' %}" class="link link-primary">
-                    Sign up
-                </a>
-            </p>
+        <div>
+            <label class="label">
+                <span class="label-text">Username</span>
+            </label>
+            {{ form.username }}
         </div>
-    </div>
-</div>
 
+        <div>
+            <label class="label">
+                <span class="label-text">Password</span>
+            </label>
+            {{ form.password }}
+        </div>
+
+        <button class="btn btn-primary w-full mt-4">Log in</button>
+    </form>
+
+    <p class="text-center mt-4 text-sm">
+        Don't have an account?
+        <a href="{% url 'register' %}" class="link link-primary">Sign up</a>
+    </p>
+</div>
 {% endblock %}

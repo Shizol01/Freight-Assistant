@@ -4,24 +4,37 @@ from django.contrib.auth.models import User
 
 class LoginViewForm(forms.Form):
     username = forms.CharField(
-        widget=forms.TextInput(attrs={'class': 'form-control'}))
+        widget=forms.TextInput(attrs={
+            'class': 'input input-bordered w-full'
+        })
+    )
     password = forms.CharField(
-        widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+        widget=forms.PasswordInput(attrs={
+            'class': 'input input-bordered w-full'
+        })
+    )
 
 
 class RegisterViewForm(forms.Form):
-    username = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
-    first_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
-    last_name = forms.CharField(widget=forms.TextInput(attrs={'class': 'form-control'}))
-    email = forms.EmailField(widget=forms.EmailInput(attrs={'class': 'form-control'}))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
+    username = forms.CharField(
+        widget=forms.TextInput(attrs={'class': 'input input-bordered w-full'})
+    )
+    first_name = forms.CharField(
+        widget=forms.TextInput(attrs={'class': 'input input-bordered w-full'})
+    )
+    last_name = forms.CharField(
+        widget=forms.TextInput(attrs={'class': 'input input-bordered w-full'})
+    )
+    email = forms.EmailField(
+        widget=forms.EmailInput(attrs={'class': 'input input-bordered w-full'})
+    )
+    password = forms.CharField(
+        widget=forms.PasswordInput(attrs={'class': 'input input-bordered w-full'})
+    )
     password2 = forms.CharField(
         label='Confirm Password',
-        widget=forms.PasswordInput(attrs={'class': 'form-control'})
+        widget=forms.PasswordInput(attrs={'class': 'input input-bordered w-full'})
     )
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(*args, **kwargs)
 
     def clean(self):
         cleaned = super().clean()
@@ -37,11 +50,11 @@ class RegisterViewForm(forms.Form):
 
 class PasswordChangeForm(forms.Form):
     old_password = forms.CharField(
-        widget=forms.PasswordInput(attrs={'class': 'form-control'})
+        widget=forms.PasswordInput(attrs={'class': 'input input-bordered w-full'})
     )
     new_password = forms.CharField(
-        widget=forms.PasswordInput(attrs={'class': 'form-control'})
+        widget=forms.PasswordInput(attrs={'class': 'input input-bordered w-full'})
     )
     new_password_2 = forms.CharField(
-        widget=forms.PasswordInput(attrs={'class': 'form-control'})
+        widget=forms.PasswordInput(attrs={'class': 'input input-bordered w-full'})
     )
