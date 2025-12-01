@@ -76,14 +76,14 @@ class Command(BaseCommand):
     # TEST USER
 
     def _create_test_user(self):
-        test_email = os.getenv("TEST_USER_EMAIL", "dispatcher@test.com")
+        test_username = os.getenv("TEST_USERNAME", "test_user")
         test_pass = os.getenv("TEST_USER_PASS", "test1234")
 
         user, created = User.objects.get_or_create(
-            username="dispatcher",
+            username=test_username,
             defaults={
-                "email": test_email,
-                "first_name": "Test",
+                "email": 'dispatcher@test.com',
+                "first_name": 'Test',
                 "last_name": "Dispatcher",
             }
         )
@@ -91,7 +91,7 @@ class Command(BaseCommand):
         user.save()
 
         if created:
-            self.stdout.write(self.style.SUCCESS(f" Created test user: {test_email}"))
+            self.stdout.write(self.style.SUCCESS(f" Created test user: {test_username}"))
         else:
             self.stdout.write(self.style.WARNING(f" Updated existing test user password"))
 
