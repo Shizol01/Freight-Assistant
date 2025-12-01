@@ -1,26 +1,29 @@
 {% load static %}
-<div class="drawer-side">
+
+<div class="drawer-side border-r border-base-300 bg-base-100">
+
     <label for="sidebar-toggle" class="drawer-overlay"></label>
 
-    <ul class="menu p-4 w-80 min-h-full bg-base-100 text-base-content">
+    <ul class="menu p-4 w-72 min-h-full bg-base-100 text-base-content">
 
         <li class="menu-title">Dashboard</li>
-{#        <li><a href="{% url 'dashboard' %}">Overview</a></li>#}
+        <li><a href="{% url 'dashboard' %}" class="font-medium">Overview</a></li>
 
         <li class="menu-title">Transportation</li>
-{#        <li><a href="{% url 'carrier-list' %}">Carriers</a></li>#}
-{#        <li><a href="{% url 'driver-list' %}">Drivers</a></li>#}
-{#        <li><a href="{% url 'route-list' %}">Routes</a></li>#}
-{#        <li><a href="{% url 'stop-list' %}">Stops</a></li>#}
-{#        <li><a href="{% url 'calculation-list' %}">Calculations</a></li>#}
+        <li><a href="#">Carriers</a></li>
+        <li><a href="#">Drivers</a></li>
+        <li><a href="#">Routes</a></li>
+        <li><a href="#">Stops</a></li>
+        <li><a href="#">Calculations</a></li>
 
         <li class="menu-title">Messaging</li>
-{#        <li><a href="{% url 'conversation_list' %}">Messages</a></li>#}
+        <li><a href="#">Messages</a></li>
 
         <li class="menu-title">Extras</li>
-{#        <li><a href="{% url 'leasing' %}">Leasing</a></li>#}
-{#        <li><a href="{% url 'salary' %}">Salary</a></li>#}
-{#        <li><a href="{% url 'profit' %}">Profitability</a></li>#}
+        <li><a href="#">Leasing</a></li>
+        <li><a href="#">Salary</a></li>
+        <li><a href="#">Profitability</a></li>
 
     </ul>
+
 </div>
