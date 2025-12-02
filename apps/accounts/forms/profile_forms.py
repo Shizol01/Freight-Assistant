@@ -15,9 +15,9 @@ class UserProfileForm(forms.ModelForm):
             'phone', 'twitter', 'facebook', 'instagram', 'linkedin'
         ]
         widgets = {
-            'profile_image': forms.ClearableFileInput(attrs={
-                'style': 'display:none;',
-                'id': 'fileInput'
+            'profile_image': forms.FileInput(attrs={
+                'id': 'fileInput',
+                'class': 'hidden',
             })
         }
 
@@ -31,4 +31,4 @@ class UserProfileForm(forms.ModelForm):
 
         for field in self.fields.values():
             if not isinstance(field.widget, forms.FileInput):
-                field.widget.attrs.update({'class': 'form-control'})
+                field.widget.attrs.update({'class': 'input input-bordered w-full'})
