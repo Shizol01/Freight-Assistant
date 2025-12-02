@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+
+    <div class="max-w-4xl mx-auto space-y-8">
+
+        <!-- PROFILE CARD -->
+        <div class="card bg-base-100 shadow">
+            <div class="card-body">
+
+                <h2 class="card-title">My Profile</h2>
+                <p class="text-sm opacity-70">Manage your personal information.</p>
+
+                <div class="divider"></div>
+
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+
+                    <!-- AVATAR + BUTTONS -->
+                    <div class="flex items-center gap-6 mb-6">
+
+                        <div class="avatar">
+                            <div class="w-28 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                                {% if profile.profile_image %}
+                                    <img src="{{ profile.profile_image.url }}">
+                                {% else %}
+                                    <img src="{% static 'default-avatar.png' %}">
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="flex flex-col gap-2">
+                            <label for="fileInput" class="btn btn-primary btn-sm">
+                                Change Photo
+                            </label>
+
+                            {% if profile.profile_image %}
+                                <a href="{% url 'profile-delete-image' %}" class="btn btn-outline btn-error btn-sm">
+                                    Remove Photo
+                                </a>
+                            {% endif %}
+                        </div>
+
+                        <!-- Hidden Django FileInput -->
+                        {{ form.profile_image }}
+                    </div>
+
+
+                    <!-- FORM GRID -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                        <div>
+                            <label class="label"><span class="label-text">First Name</span></label>
+                            {{ form.first_name }}
+                        </div>
+
+                        <div>
+                            <label class="label"><span class="label-text">Last Name</span></label>
+                            {{ form.last_name }}
+                        </div>
+
+                        <div class="md:col-span-2">
+                            <label class="label"><span class="label-text">About Me</span></label>
+                            {{ form.about_me }}
+                        </div>
+
+                        <div>
+                            <label class="label"><span class="label-text">Job Title</span></label>
+                            {{ form.job }}
+                        </div>
+
+                        <div>
+                            <label class="label"><span class="label-text">Country</span></label>
+                            {{ form.country }}
+                        </div>
+
+                        <div>
+                            <label class="label"><span class="label-text">Address</span></label>
+                            {{ form.address }}
+                        </div>
+
+                        <div>
+                            <label class="label"><span class="label-text">Phone</span></label>
+                            {{ form.phone }}
+                        </div>
+
+                        <div>
+                            <label class="label"><span class="label-text">Twitter</span></label>
+                            {{ form.twitter }}
+                        </div>
+
+                        <div>
+                            <label class="label"><span class="label-text">Facebook</span></label>
+                            {{ form.facebook }}
+                        </div>
+
+                        <div>
+                            <label class="label"><span class="label-text">Instagram</span></label>
+                            {{ form.instagram }}
+                        </div>
+
+                        <div>
+                            <label class="label"><span class="label-text">LinkedIn</span></label>
+                            {{ form.linkedin }}
+                        </div>
+
+                    </div>
+
+                    <div class="card-actions justify-end mt-6">
+                        <button class="btn btn-primary">Save changes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- PASSWORD CHANGE -->
+        <div class="card bg-base-100 shadow">
+            <div class="card-body">
+
+                <h2 class="card-title">Change Password</h2>
+                <p class="text-sm opacity-70">Update your account password.</p>
+
+                <div class="divider"></div>
+
+                <form method="POST">
+                    {% csrf_token %}
+
+                    {{ password_form.non_field_errors }}
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+
+                        <div>
+                            <label class="label"><span class="label-text">Old Password</span></label>
+                            {{ password_form.old_password }}
+                        </div>
+
+                        <div>
+                            <label class="label"><span class="label-text">New Password</span></label>
+                            {{ password_form.new_password }}
+                        </div>
+
+                        <div>
+                            <label class="label"><span class="label-text">Repeat New Password</span></label>
+                            {{ password_form.new_password_2 }}
+                        </div>
+
+                    </div>
+
+                    <div class="card-actions justify-end mt-6">
+                        <button class="btn btn-warning">Change Password</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+
+{% endblock %}
