@@ -18,9 +18,10 @@
 
     <div class="drawer-content flex flex-col">
         {% include "partials/navbar.html" %}
-
-        <main class="p-6 pt-20">
-            {% block content %}{% endblock %}
+        <main class="pt-20">
+            <div class="px-6 w-full max-w-4xl mx-auto">
+                {% block content %}{% endblock %}
+            </div>
         </main>
     </div>
 
