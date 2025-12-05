@@ -1,1 +1,3 @@
-from .carrier import CarrierAddView
+from .carrier import (CarrierAddView, CarrierDetailView,
+                      CarrierUpdateView, CarrierDeleteView,
+                      CarrierListView)
