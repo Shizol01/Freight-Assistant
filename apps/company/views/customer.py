@@ -22,7 +22,8 @@ class CustomerAddView(View):
 
         if form.is_valid():
             form.save()
-            return redirect('dashboard')
+            return redirect('customer-list')
+
         return render(request, 'company/customer/customer_add.html', {'form': form})
 
 
@@ -31,7 +32,8 @@ class CustomerDetailView(View):
         customer = get_object_or_404(
             Customer, id=customer_id
         )
-        return render(request, 'company/customer/customer_detail.html', {'customer': customer})
+        branches = customer.branches.all()
+        return render(request, 'company/customer/customer_detail.html', {'customer': customer, 'branches': branches})
 
 
 class CustomerUpdateView(View):
@@ -49,7 +51,7 @@ class CustomerUpdateView(View):
         form = CustomerForm(request.POST, instance=customer)
         if form.is_valid():
             form.save()
-            return redirect('dashboard')
+            return redirect('customer-detail', customer_id=customer.id)
         return render(request, 'company/customer/customer_update.html', {'form': form})
 
 
@@ -65,4 +67,4 @@ class CustomerDeleteView(View):
             Customer, id=customer_id
         )
         customer.delete()
-        return redirect('dashboard')
+        return redirect('customer-list')
