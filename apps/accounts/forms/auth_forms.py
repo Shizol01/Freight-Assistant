@@ -40,7 +40,7 @@ class RegisterViewForm(forms.Form):
         cleaned = super().clean()
 
         if cleaned.get("password") != cleaned.get("password2"):
-            raise forms.ValidationError("Passwords don't match")
+            raise forms.ValidationError("Passwords don't match.")
 
         if User.objects.filter(username=cleaned.get("username")).exists():
             raise forms.ValidationError("User with this username already exists.")
