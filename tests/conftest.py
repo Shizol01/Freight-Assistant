@@ -2,6 +2,8 @@ import pytest
 from django.contrib.auth.models import User
 from django.test import Client
 
+from apps.company.models import Carrier
+
 
 @pytest.fixture
 def client():
@@ -35,3 +37,24 @@ def profile(user):
     profile.save()
 
     return profile
+
+
+@pytest.fixture
+def carrier_list():
+    carriers = [
+        Carrier(
+            name=f"test_carrier{i}",
+            nip=f"123456789{i}",
+            address=f"test_carrier_address{i}",
+            email=f"test_carrier{i}@mail.com",
+            phone=f"12345678{i}",
+        )
+        for i in range(1, 6)
+    ]
+    Carrier.objects.bulk_create(carriers)
+    return carriers
+
+
+@pytest.fixture
+def carrier(carrier_list):
+    return carrier_list[0]
