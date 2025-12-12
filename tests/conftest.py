@@ -2,7 +2,7 @@ import pytest
 from django.contrib.auth.models import User
 from django.test import Client
 
-from apps.company.models import Carrier, Customer
+from apps.company.models import Carrier, Customer, CustomerBranch
 
 
 @pytest.fixture
@@ -79,3 +79,25 @@ def customer_list():
 @pytest.fixture
 def customer(customer_list):
     return customer_list[0]
+
+@pytest.fixture
+def branch_list(customer_list):
+    all_branches = []
+    for customer in customer_list:
+        custome_branches = [
+             CustomerBranch(
+                customer=customer,
+                name=f"{customer.name} Test Branch {i}",
+                address=f"Test Branch Address{i}"
+            )
+        for i in range(1,3)
+        ]
+        all_branches.extend(custome_branches)
+    CustomerBranch.objects.bulk_create(all_branches)
+    return CustomerBranch.objects.all()
+
+@pytest.fixture
+def branch(branch_list):
+    return CustomerBranch.objects.first()
+
+
