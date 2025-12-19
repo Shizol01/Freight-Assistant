@@ -5,6 +5,7 @@ from django.test import Client
 from apps.company.models import Carrier, Customer, CustomerBranch
 from apps.drivers.models import Driver
 from apps.messaging.models import Conversation, Message
+from apps.transport.models import Route, Stop
 
 
 @pytest.fixture
@@ -149,3 +150,17 @@ def conversation(user, user_2):
 @pytest.fixture
 def message(conversation, user):
     return Message.objects.create(conversation=conversation, sender=user, text='Initial msg')
+
+
+@pytest.fixture
+def route(user):
+    return Route.objects.create(name='test_route', user=user)
+
+@pytest.fixture
+def stop(route):
+    return Stop.objects.create(
+        route=route,
+        stop_number=1,
+        stop_type='START_FROM_BASE',
+        location='initial',
+        )
