@@ -10,7 +10,6 @@ from .services.profit import calculate_profit
 
 class LeasingView(LoginRequiredMixin, View):
 
-
     def get(self, request):
         return render(request, "tools/leasing.html", {"form": LeasingForm()})
 
