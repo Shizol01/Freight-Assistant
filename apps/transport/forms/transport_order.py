@@ -80,7 +80,7 @@ class TransportOrderBaseForm(forms.ModelForm):
 class TransportOrderUpdateForm(TransportOrderBaseForm):
     class Meta:
         model = TransportOrder
-        fields = "__all__"
+        exclude = ["user",]
 
     def save(self, commit=True):
         instance = super().save(commit=False)
@@ -100,7 +100,7 @@ class TransportOrderUpdateForm(TransportOrderBaseForm):
 class TransportOrderForm(TransportOrderBaseForm):
     class Meta:
         model = TransportOrder
-        exclude = ["carrier_cost", "profit"]
+        exclude = ["carrier_cost", "profit", 'user', 'created_at']
 
     def save(self, commit=True):
         instance = super().save(commit=False)
