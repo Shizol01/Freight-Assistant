@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.humanize',
     'tailwind',
     'theme',
     'django_browser_reload',
@@ -48,6 +49,7 @@ INSTALLED_APPS = [
     'apps.transport',
     'apps.company',
     'apps.drivers',
+    'apps.tools',
 ]
 
 MIDDLEWARE = [
