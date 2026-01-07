@@ -30,13 +30,10 @@ class StopForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
 
-
         self.fields["stop_type"].required = True
         self.fields["stop_type"].choices = [
             c for c in self.fields["stop_type"].choices if c[0] != ""
         ]
-
-
 
 
 StopFormSet = inlineformset_factory(

@@ -1,5 +1,6 @@
 from django import forms
 
+
 class LeasingForm(forms.Form):
     vehicle_price = forms.IntegerField(
         widget=forms.TextInput(attrs={'class': 'input input-bordered w-full'})
