@@ -1,11 +1,13 @@
 from pathlib import Path
 
+from django.conf import settings
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import get_object_or_404
+from django.shortcuts import render, redirect
 from django.template.loader import render_to_string
 from django.views import View
-from weasyprint import HTML
+from weasyprint import HTML, CSS
 
 from apps.transport.forms import CalculationForm
 from apps.transport.models import Calculation
@@ -112,18 +114,6 @@ class CalculationDeleteView(LoginRequiredMixin, View):
         return redirect("calculation-list")
 
 
-from django.http import HttpResponse
-from django.shortcuts import get_object_or_404
-from django.template.loader import render_to_string
-from django.views import View
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.conf import settings
-
-from weasyprint import HTML, CSS
-
-from apps.transport.models import Calculation
-
-
 class CalculationPdfView(LoginRequiredMixin, View):
     def get(self, request, calculation_id):
         calculation = get_object_or_404(
@@ -136,10 +126,10 @@ class CalculationPdfView(LoginRequiredMixin, View):
 
         work_minutes = (calculation.total_drive_time_minutes or 0) + (calculation.total_other_work_time_minutes or 0)
         total_duration_minutes = (
-            (calculation.total_drive_time_minutes or 0)
-            + (calculation.total_break_time_minutes or 0)
-            + (calculation.total_rest_time_minutes or 0)
-            + (calculation.total_other_work_time_minutes or 0)
+                (calculation.total_drive_time_minutes or 0)
+                + (calculation.total_break_time_minutes or 0)
+                + (calculation.total_rest_time_minutes or 0)
+                + (calculation.total_other_work_time_minutes or 0)
         )
 
         html = render_to_string(
