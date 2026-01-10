@@ -188,7 +188,7 @@ DB_HOST=localhost
 DB_PORT=5432
 
 # Populate test user
-TEST_USERNAME=test_userA\Z xc
+TEST_USERNAME=test_user
 TEST_USER_PASS=test1234
 ```
 
@@ -243,3 +243,4 @@ password: test1234
 
 Created by **Shizol01**  
 Python / Django Developer
+
